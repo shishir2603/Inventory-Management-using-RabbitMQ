@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Read Database</title>
+    <!-- Load Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Database Records</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price per item</th>
+                </tr>
+            </thead>
+            <tbody id="records-table-body">
+            </tbody>
+        </table>
+    </div>
+    <!-- Load Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://localhost:5000/read_database_actually');
+    xhr.responseType = 'json';
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            var data = xhr.response;
+            console.log(data);
+            // Assume data is an array of objects, iterate over it
+            data.forEach(function(record) {
+                var tr = document.createElement('tr');
+
+                // Create and append the 'id' cell
+                var tdId = document.createElement('td');
+                tdId.textContent = record.id;
+                tr.appendChild(tdId);
+
+                // Create and append the 'name' cell
+                var tdName = document.createElement('td');
+                tdName.textContent = record.name;
+                tr.appendChild(tdName);
+
+                // Create and append the 'quantity' cell
+                var tdQuantity = document.createElement('td');
+                tdQuantity.textContent = record.quantity;
+                tr.appendChild(tdQuantity);
+
+                var tdAmount = document.createElement('td');
+                tdAmount.textContent = record.amount;
+                tr.appendChild(tdAmount);
+
+                // Append the row to the table body
+                document.getElementById('records-table-body').appendChild(tr);
+            });
+        } else {
+            // Handle errors, for example, display a message to the user
+            console.log('An error occurred while fetching data: ', xhr.statusText);
+        }
+    };
+    xhr.onerror = function () {
+        // Handle network errors, for example, display a message to the user
+        console.error("Network Error");
+    };
+    xhr.send();
+});
+
+    </script>
+</body>
+</html>

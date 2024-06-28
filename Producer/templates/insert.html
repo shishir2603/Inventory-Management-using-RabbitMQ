@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Insert Record</title>
+	<!-- Load Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Add a New Record</h1>
+		<form action="{{ url_for('insert_record_actually') }}" id="insert-form" enctype="multipart/form-data" method="post">
+			<div class="form-group">
+				<label for="name">Name:</label>
+				<input type="text" class="form-control" id="name" name="name" required>
+			</div>
+			<div class="form-group">
+				<label for="id">ID:</label>
+				<input type="text" class="form-control" id="id" name="id" required>
+			</div>
+			<div class="form-group">
+				<label for="quantity">Quantity:</label>
+				<input type="text" class="form-control" id="quantity" name="quantity" required>
+			</div>
+			<div class="form-group">
+				<label for="amount">Price per item:</label>
+				<input type="text" class="form-control" id="amount" name="amount" required>
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+	<!-- Load Bootstrap JS and jQuery -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>
